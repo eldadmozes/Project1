@@ -18,7 +18,7 @@ pipeline {
         //             ])
         //     }
         // }
-        stage('Cleanup') {
+        stage('Cleanup') { agent none
             steps {
                 sh "rm -rf Project1"
             }
