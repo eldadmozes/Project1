@@ -19,7 +19,7 @@ pipeline {
         //     }
         // }
         stage('Cleanup') {
-            steps {node('Built-In Node')
+            steps {
                 sh "rm -rf Project1"
             }
         }
