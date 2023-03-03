@@ -5,7 +5,6 @@ pipeline {
      agent none
 //            triggers {
 //                githubPush()
-    }
     stages {
         // stage ('checkout scm'){
         //     steps {
