@@ -3,8 +3,8 @@ properties([pipelineTriggers([githubPush()])])
 
 pipeline {
      agent none
-            triggers {
-                githubPush()
+//            triggers {
+//                githubPush()
     }
     stages {
         // stage ('checkout scm'){
