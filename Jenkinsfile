@@ -2,7 +2,7 @@ properties([pipelineTriggers([githubPush()])])
 
 
 pipeline {
-     agent none
+     agent master
 //            triggers {
 //                githubPush()
     stages {
