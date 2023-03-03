@@ -1,5 +1,7 @@
 properties([pipelineTriggers([githubPush()])])
 
+
+
 pipeline {
      agent {label 'master'}
 //            triggers {
