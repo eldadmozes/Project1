@@ -2,7 +2,7 @@ properties([pipelineTriggers([githubPush()])])
 
 
 pipeline {
-    agent any
+    agent none
             triggers {
                 githubPush()
     }
