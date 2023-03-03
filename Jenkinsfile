@@ -2,7 +2,7 @@ properties([pipelineTriggers([githubPush()])])
 
 
 pipeline {
-     agent {none}
+     agent none
 //            triggers {
 //                githubPush()
     stages {
@@ -19,7 +19,7 @@ pipeline {
         //     }
         // }
         stage('Cleanup') {
-            steps {
+            steps {node('Built-In Node')
                 sh "rm -rf Project1"
             }
         }
