@@ -45,7 +45,7 @@ pipeline {
         stage('test') {
             steps {
                 sh 'curl -I $(dig +short myip.opendns.com @resolver1.opendns.com):5001 > Result.csv'
-		sh 'date >> result.csv && ${BUILD_USER_FIRST_NAME} >> result.csv 
+		sh 'date >> result.csv && ${BUILD_USER_FIRST_NAME} >> result.csv'
             }    
         }        
         stage('Stop app container') {
