@@ -50,6 +50,7 @@ pipeline {
         stage('Stop app container') {
             steps {
                 sh 'docker stop $(docker ps -q | head -n 1)'
+		build job: 'app_deployment'
             }
         }
         stage('Upload file to S3'){
