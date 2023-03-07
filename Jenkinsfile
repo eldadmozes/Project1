@@ -44,7 +44,14 @@ pipeline {
             steps {
                 sh "docker run -d -p 5001:5001 hello-web:1"
             }    
-        }        
+        }
+	    stage("build user") {
+  		steps{
+    		wrap([$class: 'BuildUser', useGitAuthor: true]) {
+      		sh 'echo ${BUILD_USER} >> Result.json'
+    }
+  }
+}
 	stage("testing") {
    	    steps {
         	script {
