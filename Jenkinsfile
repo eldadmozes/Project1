@@ -45,10 +45,10 @@ pipeline {
 	stage("testing") {
    	    steps {
         	script {
-            	def USER
            	STATUS = sh(script: "curl -I \$(dig +short myip.opendns.com @resolver1.opendns.com):5001 | grep \"HTTP/1.1 200 OK\" | tr -d \"\\r\\n\"", returnStdout: true).trim()
             	sh 'curl -I $(dig +short myip.opendns.com @resolver1.opendns.com):5001 | grep "HTTP/1.1 200 OK" >> Result.json'
             	sh 'echo "date" >> Result.json'
+		sh 'echo "$TIME" >> Result.json'	
             	withAWS(credentials: 'Jenkins (AWS)', region: 'us-east-1') {
                 sh "aws dynamodb put-item --table-name result --item '{\"user\": {\"S\": \"${BUILD_USER}\"}, \"date\": {\"S\": \"date\"}, \"state\": {\"S\": \"${STATUS}\"}}'"
             }
