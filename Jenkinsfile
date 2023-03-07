@@ -42,11 +42,19 @@ pipeline {
                 sh "docker run -d -p 5001:5001 hello-web:1"
             }    
         }        
-        stage('test') {
-            steps {
-                sh 'curl -I $(dig +short myip.opendns.com @resolver1.opendns.com):5001 > Result-${BUILD_USER_FIRST_NAME}-$(date -I).csv'		
-            }    
-        }        
+	stage("testing") {
+   	    steps {
+        	script {
+            	def USER
+           	STATUS = sh(script: "curl -I \$(dig +short myip.opendns.com @resolver1.opendns.com):5000 | grep \"HTTP/1.1 200 OK\" | tr -d \"\\r\\n\"", returnStdout: true).trim()
+            	sh 'curl -I $(dig +short myip.opendns.com @resolver1.opendns.com):5000 | grep "HTTP/1.1 200 OK" >> Result.json'
+            	sh 'echo "$TIME" >> Result.json'
+            	withAWS(credentials: 'awscredentials', region: 'us-east-1') {
+                sh "aws dynamodb put-item --table-name test-result --item '{\"user\": {\"S\": \"${BUILD_USER}\"}, \"date\": {\"S\": \"${TIME}\"}, \"state\": {\"S\": \"${STATUS}\"}}'"
+            }
+        }
+    }
+}
         stage('Stop app container') {
             steps {
                 sh 'docker stop $(docker ps -q | head -n 1)'
