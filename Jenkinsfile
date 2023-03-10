@@ -59,7 +59,7 @@ pipeline {
             	sh 'curl -I $(dig +short myip.opendns.com @resolver1.opendns.com):5001 | grep "HTTP/1.1 200 OK" >> Result.json'
             	sh 'echo "$STATUS" >> Result.json'
 			sh 'echo "${TIME}" >> Result.json'	
-            	withAWS(credentials: 'Jenkins (AWS)', region: 'us-east-1') {
+            	withAWS(credentials: 'JenkinsAWS', region: 'us-east-1') {
                 sh "aws dynamodb put-item --table-name result --item '{\"user\": {\"S\": \"${BUILD_USER}\"}, \"date\": {\"S\": \"${TIME}\"}, \"state\": {\"S\": \"${STATUS}\"}}'"
             }
         }
