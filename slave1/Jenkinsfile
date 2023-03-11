@@ -2,9 +2,7 @@ properties([pipelineTriggers([githubPush()])])
 
 
 pipeline {
-    agent {
-        label '${node}'
-    }
+    agent any
             triggers {
                 githubPush()
     }
