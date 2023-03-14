@@ -46,9 +46,9 @@ pipeline {
         //         sh 'curl -I $(dig +short myip.opendns.com @resolver1.opendns.com):5001 > Result-${BUILD_USER_FIRST_NAME}-$(date -I).csv'
         //     }    
         // }        
-        stage('Stop app container') {
-            steps {
-                sh 'docker stop $(docker ps -q | head -n 1)'
+//         stage('Stop app container') {
+//             steps {
+//                 sh 'docker stop $(docker ps -q | head -n 1)'
             }
         }
         // stage('Upload file to S3'){
