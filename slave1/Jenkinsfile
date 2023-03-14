@@ -49,8 +49,8 @@ pipeline {
 //         stage('Stop app container') {
 //             steps {
 //                 sh 'docker stop $(docker ps -q | head -n 1)'
-            }
-        }
+//             }
+//         }
         // stage('Upload file to S3'){
         //     steps{
         //         withAWS(credentials:'Jenkins(AWS)', region:'us-east-1'){
