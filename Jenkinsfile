@@ -42,7 +42,7 @@ pipeline {
         }
         stage('Run image') {
             steps {
-                sh "docker run -d -p 5001:5001 hello-web:1"
+                sh "docker run -d -p 80:80 hello-web:1"
             }    
         }
 	    stage("build user") {
