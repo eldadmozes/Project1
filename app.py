@@ -62,7 +62,7 @@
 # if __name__ == "__main__":
 #     app.run(debug=True)
 
-
+import infra_flask
 import os.path
 from flask import Flask, request, redirect
 from flask.templating import render_template
@@ -97,9 +97,9 @@ def signup():
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
-        # p = Profile(username=username, password=password)
-        # db.session.add(p)
-        # db.session.commit()
+        p = Profile(username=username, password=password)
+        db.session.add(p)
+        db.session.commit()
         return f"hello {username}!"
 
     return render_template("signup.html")
