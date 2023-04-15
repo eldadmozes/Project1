@@ -1,0 +1,213 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--	<title>Jenkins Jobs</title>-->
+<!--	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+<!--	<style>-->
+<!--		body {-->
+<!--			margin: 0;-->
+<!--			padding: 10;-->
+<!--			font-family: Arial, sans-serif;-->
+<!--			font-size: 16px;-->
+<!--			line-height: 1.4;-->
+<!--		}-->
+<!--		.container {-->
+<!--			max-width: 960px;-->
+<!--			margin: 0 auto;-->
+<!--			padding: 20px;-->
+<!--		}-->
+<!--		h1 {-->
+<!--			font-size: 24px;-->
+<!--			font-weight: bold;-->
+<!--			margin: 0 0 20px;-->
+<!--		}-->
+<!--		table {-->
+<!--			border-collapse: collapse;-->
+<!--			width: 100%;-->
+<!--		}-->
+<!--		th, td {-->
+<!--			padding: 8px;-->
+<!--			text-align: left;-->
+<!--			border: 1px solid #ddd;-->
+<!--		}-->
+<!--		th {-->
+<!--			background-color: #f2f2f2;-->
+<!--			font-weight: bold;-->
+<!--		}-->
+<!--		button {-->
+<!--			background-color: #008CBA;-->
+<!--			color: white;-->
+<!--			border: none;-->
+<!--			padding: 8px 16px;-->
+<!--			text-align: center;-->
+<!--			text-decoration: none;-->
+<!--			display: inline-block;-->
+<!--			font-size: 16px;-->
+<!--			border-radius: 10px;-->
+<!--			cursor: pointer;-->
+<!--		}-->
+<!--		.delete-button {-->
+<!--			background-color: #f44336;-->
+<!--		}-->
+<!--		select {-->
+<!--			padding: 8px 16px;-->
+<!--			border: 1px solid #ccc;-->
+<!--			border-radius: 5px;-->
+<!--			box-sizing: border-box;-->
+<!--			font-size: 16px;-->
+<!--			margin-bottom: 20px;-->
+<!--		}-->
+<!--	</style>-->
+<!--</head>-->
+<!--<body>-->
+<!--	<div class="container">-->
+<!--		<h1>Jenkins Jobs</h1>-->
+<!--		<table>-->
+<!--			<thead>-->
+<!--				<tr>-->
+<!--					<th>Job Name</th>-->
+<!--					<th>Action</th>-->
+<!--				</tr>-->
+<!--			</thead>-->
+<!--			<tbody>-->
+<!--				&lt;!&ndash; Use the following format to add a new job:-->
+<!--				<tr>-->
+<!--					<td>Job Name</td>-->
+<!--					<td>-->
+<!--						<button class="run-button" data-job="JOB_NAME">Run</button>-->
+<!--						<button class="delete-button" data-job="JOB_NAME">Delete</button>-->
+<!--					</td>-->
+<!--				</tr>-->
+<!--				Replace JOB_NAME with the name of your Jenkins job. &ndash;&gt;-->
+<!--				<tr>-->
+<!--					<td>Job 1</td>-->
+<!--					<td>-->
+<!--						<button class="run-button" data-job="job1">Run</button>-->
+<!--						<button class="delete-button" data-job="job1">Delete</button>-->
+<!--					</td>-->
+<!--				</tr>-->
+<!--				<tr>-->
+<!--					<td>Job 2</td>-->
+<!--					<td>-->
+<!--						<button class="run-button" data-job="job2">Run</button>-->
+<!--						<button class="delete-button" data-job="job2">Delete</button>-->
+<!--					</td>-->
+<!--				</tr>-->
+<!--				<tr>-->
+<!--					<td>Job 3</td>-->
+<!--                  <td>-->
+<!--						<button class="run-button" data-job="job3">Run</button>-->
+<!--						<button class="delete-button" data-job="job3">Delete</button>-->
+<!--					</td>-->
+<!--				</tr>-->
+<!--				<tr>-->
+<!--			<div>-->
+<!-- </body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jenkins Jobs</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<style>
+		body {
+			margin: 0;
+			padding: 10px; /* Added "px" to specify unit for padding */
+			font-family: Arial, sans-serif;
+			font-size: 16px;
+			line-height: 1.4;
+		}
+		.container {
+			max-width: 960px;
+			margin: 0 auto;
+			padding: 20px;
+		}
+		h1 {
+			font-size: 24px;
+			font-weight: bold;
+			margin: 0 0 20px;
+		}
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+		th, td {
+			padding: 8px;
+			text-align: left;
+			border: 1px solid #ddd;
+		}
+		th {
+			background-color: #f2f2f2;
+			font-weight: bold;
+		}
+		button {
+			background-color: #008CBA;
+			color: white;
+			border: none;
+			padding: 8px 16px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			border-radius: 10px;
+			cursor: pointer;
+		}
+		.delete-button {
+			background-color: #f44336;
+		}
+		select {
+			padding: 8px 16px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			box-sizing: border-box;
+			font-size: 16px;
+			margin-bottom: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Jenkins Jobs</h1>
+		<table>
+			<thead>
+				<tr>
+					<th>Job Name</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- Use the following format to add a new job:
+				<tr>
+					<td>Job Name</td>
+					<td>
+						<button class="run-button" data-job="JOB_NAME">Run</button>
+						<button class="delete-button" data-job="JOB_NAME">Delete</button>
+					</td>
+				</tr>
+				Replace JOB_NAME with the name of your Jenkins job. -->
+				<tr>
+					<td>Job 1</td>
+					<td>
+						<button class="run-button" data-job="job1">Run</button>
+						<button class="delete-button" data-job="job1">Delete</button>
+					</td>
+				</tr>
+				<tr>
+					<td>Job 2</td>
+					<td>
+						<button class="run-button" data-job="job2">Run</button>
+						<button class="delete-button" data-job="job2">Delete</button>
+					</td>
+				</tr>
+				<tr>
+					<td>Job 3</td>
+                  <td>
+						<button class="run-button" data-job="job3">Run</button>
+						<button class="delete-button" data-job="job3">Delete</button>
+					</td>
+				</tr>
+			</tbody>
+		</table> <!-- Added missing closing tag for table -->
+	</div> <!-- Removed unnecessary div tag -->
+</body>
+</html>

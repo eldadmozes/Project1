@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AWS</title>
+</head>
+<body>
+<h1>hello aws</h1>
+<br>
+<h3>Create Iam user</h3>
+<form action="{{ url_for('aws_create_iam') }}" method="POST">
+    <label>Enter username</label>
+    <br>
+     <input type = "text" name="username" required>
+    <br>
+     <label>Enter password</label>
+    <br>
+    <input type="password" name="password" required>
+    <br>
+    <input type="submit" value="Create user">
+</form>
+<h3>Launch New Instance</h3>
+<form action="{{ url_for('aws_create_ec2') }}" method="POST">
+    <label>Instance name</label>
+    <br>
+     <input type = "text" name="instance_name" required>
+    <br>
+     <label>Instance Type</label>
+    <br>
+    <input type="text" name="instance_type" required>
+    <br>
+    <label>Image ID</label>
+    <br>
+    <input type="text" name="image_id" required>
+    <br>
+    <label>Security Group Id</label>
+    <br>
+    <input type="text" name="security_group_id" required>
+    <br>
+    <label>Instance Count</label>
+    <br>
+    <input type="number" name="instance count" required>
+    <br>
+    <input type="checkbox" name="install_docker" value="true">
+    <label for="docker_install">Install Docker</label>
+    <br>
+    <input type="checkbox" name="install_jenkins" value="true">
+    <label>Install Jenkins</label>
+    <br>
+    <input type="submit" value="Create instance">
+</form>
+<!--<a href="/signup">signup</a>-->
+<a href="/homepage">homepage</a>
+</body>
+</html>
+
+
+
+
