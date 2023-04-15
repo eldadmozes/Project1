@@ -9,6 +9,8 @@ import boto3
 import docker
 import jenkins
 
+
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 
@@ -48,29 +50,49 @@ def homepage():
     return render_template("homepage.html")
 
 
-@app.route("/jenkins")
-def create_user_jenkins():
+@app.route('/create_jenkins_job', methods=['GET', 'POST'])
+def create_job():
     if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
-        fullname = request.form.get("fullname")
-        email = request.form.get("email")
-    # Connect to Jenkins server
-    server = jenkins.Jenkins('http://your-jenkins-server-url', username='your-jenkins-username',
-                             password='your-jenkins-api-token')
+        job_name = request.form.get('job_test')
 
-    # Define the new user credentials
-    new_user = {
-        'username': 'new-user-username',
-        'password': 'new-user-password',
-        'fullName': 'New User Full Name',
-        'email': 'new.user@example.com'
-    }
+        # # Connect to Jenkins server
+        server = jenkins.Jenkins('http://3.86.193.209:8080/', username='jenkins', password='jenkins')
 
-    # Create the new user
-    server.create_user(new_user['username'], new_user['password'], new_user['fullName'], new_user['email'])
+        #     # Read the job configuration from the XML file
+        with open('templates/jenkins_job.xml', 'r') as f:
+            job_config_xml = f.read()
 
-    return render_template("jenkins.html")
+        #         # Create the new job with the configuration from the XML file
+        server.create_job(job_name, job_config_xml)
+
+        #         # Return a success message
+        return 'Job created successfully!'
+
+    return render_template("create_jenkins_job")
+
+
+
+# def create_user_jenkins():
+#     if request.method == "POST":
+#         username = request.form.get("username")
+#         password = request.form.get("password")
+#         fullname = request.form.get("fullname")
+#         email = request.form.get("email")
+#     # Connect to Jenkins server
+#     server = jenkins.Jenkins('http://your-jenkins-server-url', username='your-jenkins-username',
+#                              password='your-jenkins-api-token')
+#
+#     # Define the new user credentials
+#     new_user = {
+#         'username': 'new-user-username',
+#         'password': 'new-user-password',
+#         'fullName': 'New User Full Name',
+#         'email': 'new.user@example.com'
+#     }
+#
+#     # Create the new user
+#     server.create_user(new_user['username'], new_user['password'], new_user['fullName'], new_user['email'])
+#     return render_template("jenkins.html")
 
 
 @app.route('/aws')
@@ -140,7 +162,7 @@ def aws_create_ec2():
 
 
 @app.route("/docker", methods=["GET", "POST"])
-def docker():
+def _docker():
     if request.method == 'POST':
         image_name = request.form.get('image_name')
         subprocess.run(['docker', 'build', '-t', f'{image_name}', '.'])
