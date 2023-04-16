@@ -8,6 +8,7 @@ from flask_migrate import Migrate, migrate
 import boto3
 import docker
 import jenkins
+import time
 
 
 
@@ -68,7 +69,7 @@ def create_job():
         #         # Return a success message
         return 'Job created successfully!'
 
-    return render_template("create_jenkins_job")
+    return render_template("create_jenkins_job.html")
 
 
 
@@ -140,7 +141,7 @@ def aws_create_ec2():
         # if install_flask == 'yes':
         #     user_data += 'sudo apt install python3-flask'
         # security_group = request.form.get('security_group_id')
-        response = ec2.run_instances(
+        instance = ec2.run_instances(
             ImageId=image_id,
             InstanceType=ec2_type,
             MaxCount=1,
@@ -154,8 +155,23 @@ def aws_create_ec2():
                     'Value': ec2_name
                 }]
             }]
-        )
-        instance_id = response['Instances'][0]['InstanceId']
+        )  # Note: create_instances returns a list, so we access the first (and only) element
+
+        # instance.wait_until_running()  # Wait for the instance to start running
+        # time.sleep(5)
+        # instance.reload()  # Reload the instance object to get the latest information
+
+        # public_ip = instance.public_ip_address
+        # print(public_ip)
+        # while response.public_ip_address is None:
+        #     print("Waiting for public IP address...")
+        #     time.sleep(5)
+        #     response.reload()
+        # instance_id = response['Instances'][0]['InstanceId']
+        # time.sleep(5)
+        # public_ip = response.public_ip_address
+        # print(response)
+        # print(public_ip)
 
         return f'Created successfully!'
     return render_template("aws.html")
