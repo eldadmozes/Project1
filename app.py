@@ -8,6 +8,10 @@ import boto3
 import docker
 import jenkins
 import time
+global public_ip
+public_ip = 0
+
+
 
 
 
