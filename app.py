@@ -8,7 +8,7 @@ import boto3
 import docker
 import jenkins
 import time
-global public_ip
+# global public_ip
 public_ip = 0
 
 
@@ -158,7 +158,26 @@ def aws_create_ec2():
                     'Value': ec2_name
                 }]
             }]
-        )  # Note: create_instances returns a list, so we access the first (and only) element
+        )
+        instance_id = instance['Instances'][0]['InstanceId']
+        print(f"Instance ID: {instance_id}")
+        time.sleep(5)
+        
+        # retrieve the instance details using describe_instances()
+        instance = ec2.describe_instances(InstanceIds=[instance_id])
+        global public_ip
+        public_ip= instance['Reservations'][0]['Instances'][0]['PublicIpAddress']
+        print(public_ip)
+
+        
+
+        # while instance.public_ip_address is None:
+        #     print("Waiting for public IP address...")
+        #     time.sleep(5)
+        # instance.reload()
+        # public_ip = instance.public_ip_address
+        # print(public_ip)
+          # Note: create_instances returns a list, so we access the first (and only) element
 
         # instance.wait_until_running()  # Wait for the instance to start running
         # time.sleep(5)
@@ -178,6 +197,7 @@ def aws_create_ec2():
 
         return f'Created successfully!'
     return render_template("aws.html")
+
 
 
 @app.route("/docker", methods=["GET", "POST"])
