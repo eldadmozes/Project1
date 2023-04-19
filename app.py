@@ -8,7 +8,7 @@ import boto3
 import docker
 import jenkins
 import time
-# global public_ip
+global public_ip
 public_ip = 0
 
 
@@ -197,8 +197,7 @@ def aws_create_ec2():
 
         return f'Created successfully!'
     return render_template("aws.html")
-
-
+    print(public_ip)
 
 @app.route("/docker", methods=["GET", "POST"])
 def _docker():
