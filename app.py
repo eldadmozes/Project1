@@ -137,8 +137,7 @@ def aws_create_ec2():
             print(install_docker)
             user_data += "sudo apt-get update && sudo apt -y install docker.io\n"
 
-            # log the user data to check if it's correct
-            # print(user_data)
+            
         if install_jenkins:
             user_data += 'sudo docker pull jenkins/jenkins:lts && sudo docker run -d -p 8080:8080 -p 50000:50000 --name jenkins -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts'
         # if install_flask == 'yes':
