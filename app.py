@@ -8,7 +8,6 @@ import boto3
 import docker
 import jenkins
 import time
-global public_ip
 public_ip = 0
 
 
@@ -54,49 +53,68 @@ def homepage():
     return render_template("homepage.html")
 
 
-# @app.route('/create_jenkins_job', methods=['GET', 'POST'])
-# def create_job():
-#     if request.method == "POST":
-#         job_name = request.form.get('job_test')
-
-#         # # Connect to Jenkins server
-#         server = jenkins.Jenkins('http://3.86.193.209:8080/', username='jenkins', password='jenkins')
-
-#         #     # Read the job configuration from the XML file
-#         with open('templates/jenkins_job.xml', 'r') as f:
-#             job_config_xml = f.read()
-
-#         #         # Create the new job with the configuration from the XML file
-#         server.create_job(job_name, job_config_xml)
-
-#         #         # Return a success message
-#         return 'Job created successfully!'
-
-#     return render_template("create_jenkins_job.html")
-
-
-
-def create_user_jenkins():
+@app.route('/create_jenkins_job', methods=['GET', 'POST'])
+def create_jenkins_job():
     if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
-        fullname = request.form.get("fullname")
-        email = request.form.get("email")
-    # Connect to Jenkins server
-    server = jenkins.Jenkins(public_ip', username='your-jenkins-username',
-                             password='your-jenkins-api-token')
+        job_name = request.form.get('job_test')
 
-    # Define the new user credentials
-    new_user = {
-        'username': 'new-user-username',
-        'password': 'new-user-password',
-        'fullName': 'New User Full Name',
-        'email': 'new.user@example.com'
-    }
+        # # Connect to Jenkins server
+        server = jenkins.Jenkins('http://107.22.153.245:8080/', username='jenkins', password='jenkins')
 
-    # Create the new user
-    server.create_user(new_user['username'], new_user['password'], new_user['fullName'], new_user['email'])
-    return render_template("jenkins.html")
+        #     # Read the job configuration from the XML file
+        with open('templates/jenkins_job.xml', 'r') as f:
+            job_config_xml = f.read()
+
+        #         # Create the new job with the configuration from the XML file
+        server.create_job(job_name, job_config_xml)
+
+        #         # Return a success message
+        return 'Job created successfully!'
+    return render_template("create_jenkins_job.html")
+
+
+@app.route('/create_jenkins_pipeline_job', methods=['GET', 'POST'])
+def create_jenkins_pipeline_job():
+    if request.method == "POST":
+        job_name_1 = request.form.get('job_test1')
+
+        # # Connect to Jenkins server
+        server = jenkins.Jenkins('http://107.22.153.245:8080/', username='jenkins', password='jenkins')
+
+        #     # Read the job configuration from the XML file
+        with open('templates/jenkins_job_pipeline_1.xml', 'r') as f:
+            job_config_xml_1 = f.read()
+
+        #         # Create the new job with the configuration from the XML file
+        server.create_job(job_name_1, job_config_xml_1)
+
+        #         # Return a success message
+        return 'Job created successfully!'
+    return render_template("create_jenkins_pipeline_job.html")
+
+
+
+# def create_user_jenkins():
+#     if request.method == "POST":
+#         username = request.form.get("username")
+#         password = request.form.get("password")
+#         fullname = request.form.get("fullname")
+#         email = request.form.get("email")
+#     # Connect to Jenkins server
+#     server = jenkins.Jenkins(public_ip', username='jenkins',
+#                              password='jenkins')
+
+#     # Define the new user credentials
+#     new_user = {
+#         'username': 'new-user-username',
+#         'password': 'new-user-password',
+#         'fullName': 'New User Full Name',
+#         'email': 'new.user@example.com'
+#     }
+
+#     # Create the new user
+#     server.create_user(new_user['username'], new_user['password'], new_user['fullName'], new_user['email'])
+#     return render_template("jenkins.html")
 
 
 @app.route('/aws')
@@ -124,6 +142,7 @@ ec2 = boto3.client("ec2")
 
 @app.route('/aws_create_ec2', methods=['POST', 'GET'])
 def aws_create_ec2():
+    global public_ip
     if request.method == 'POST':
         ec2_name = request.form.get('instance_name')
         ec2_type = request.form.get('instance_type')
@@ -165,7 +184,6 @@ def aws_create_ec2():
         # retrieve the instance details using describe_instances()
         instance = ec2.describe_instances(InstanceIds=[instance_id])
         public_ip = instance['Reservations'][0]['Instances'][0]['PublicIpAddress']
-        print("dor")
         print(public_ip)
 
         
