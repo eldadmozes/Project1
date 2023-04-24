@@ -170,8 +170,8 @@ def aws_create_ec2():
 
             
         if install_jenkins:
-            user_data += 'sudo docker pull jenkins/jenkins:lts && sudo docker run -d -p 8080:8080 -p 50000:50000 --name jenkins -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts /bin/bash -c "apt-get update && apt-get install python3"'
-        # if install_flask == 'yes':
+            # user_data += 'sudo docker pull jenkins/jenkins:lts && sudo docker run -d -p 8080:8080 -p 50000:50000 --name jenkins -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts /bin/bash -c "apt-get update && apt-get install python3"'
+            user_data += 'sudo docker build -t jenkins /dev_tools . && sudo docker run -d -p 8080:8080 -p 50000:50000 --name jenkins -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts'
         #     user_data += 'sudo apt install python3-flask'
         # security_group = request.form.get('security_group_id')
         instance = ec2.run_instances(
