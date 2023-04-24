@@ -53,13 +53,18 @@ def homepage():
     return render_template("homepage.html")
 
 
+@app.route("/jenkins" , methods=['GET', 'POST'])
+def jenkins_home():
+    return render_template("jenkins.html")
+
+
 @app.route('/create_jenkins_job', methods=['GET', 'POST'])
 def create_jenkins_job():
     if request.method == "POST":
         job_name = request.form.get('job_test')
 
         # # Connect to Jenkins server
-        server = jenkins.Jenkins('http://107.22.153.245:8080/', username='jenkins', password='jenkins')
+        server = jenkins.Jenkins('http://54.159.155.219:8080/', username='jenkins', password='jenkins')
 
         #     # Read the job configuration from the XML file
         with open('templates/jenkins_job.xml', 'r') as f:
@@ -67,6 +72,9 @@ def create_jenkins_job():
 
         #         # Create the new job with the configuration from the XML file
         server.create_job(job_name, job_config_xml)
+
+        #Run the newly created job
+        server.build_job(job_name)
 
         #         # Return a success message
         return 'Job created successfully!'
@@ -79,7 +87,7 @@ def create_jenkins_pipeline_job():
         job_name_1 = request.form.get('job_test1')
 
         # # Connect to Jenkins server
-        server = jenkins.Jenkins('http://107.22.153.245:8080/', username='jenkins', password='jenkins')
+        server = jenkins.Jenkins('http://54.159.155.219:8080/', username='jenkins', password='jenkins')
 
         #     # Read the job configuration from the XML file
         with open('templates/jenkins_job_pipeline_1.xml', 'r') as f:
@@ -87,6 +95,10 @@ def create_jenkins_pipeline_job():
 
         #         # Create the new job with the configuration from the XML file
         server.create_job(job_name_1, job_config_xml_1)
+
+        #Run the newly created job
+        server.build_job(job_name_1)
+
 
         #         # Return a success message
         return 'Job created successfully!'
@@ -158,7 +170,7 @@ def aws_create_ec2():
 
             
         if install_jenkins:
-            user_data += 'sudo docker pull jenkins/jenkins:lts && sudo docker run -d -p 8080:8080 -p 50000:50000 --name jenkins -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts'
+            user_data += 'sudo docker pull jenkins/jenkins:lts && sudo docker run -d -p 8080:8080 -p 50000:50000 --name jenkins -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts /bin/bash -c "apt-get update && apt-get install python3"'
         # if install_flask == 'yes':
         #     user_data += 'sudo apt install python3-flask'
         # security_group = request.form.get('security_group_id')

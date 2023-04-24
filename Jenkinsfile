@@ -3,7 +3,7 @@ properties([pipelineTriggers([githubPush()])])
 
 
 pipeline {
-     agent {label 'master'}
+     agent any
 	environment {
     TIME = sh(script: 'date "+%Y-%m-%d %H:%M:%S"', returnStdout: true).trim()
       }
