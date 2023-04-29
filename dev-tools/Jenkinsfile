@@ -1,0 +1,12 @@
+pipeline {
+     agent any
+	environment {
+    TIME = sh(script: 'date "+%Y-%m-%d %H:%M:%S"', returnStdout: true).trim()
+      }
+    stages {
+      
+        stage('get app') {
+            steps {
+                sh "wget https://raw.githubusercontent.com"
+            }
+        }
