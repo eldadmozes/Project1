@@ -3,22 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>AWS</title>
+    <!-- <link rel="stylesheet" type=text/css href="/static/mystyle.css"> -->
 </head>
 <body>
 <h1>hello aws</h1>
 <br>
-<h3>Create Iam user</h3>
-<form action="{{ url_for('aws_create_iam') }}" method="POST">
-    <label>Enter username</label>
-    <br>
-     <input type = "text" name="username" required>
-    <br>
-     <label>Enter password</label>
-    <br>
-    <input type="password" name="password" required>
-    <br>
-    <input type="submit" value="Create user">
-</form>
+<div class="iam_form"> 
+    <h3 class="h3_aws">Create Iam user</h3>
+    <form action="{{ url_for('aws_create_iam') }}" method="POST">
+        <label>Enter username</label>
+        <br>
+         <input type = "text" name="username" required>
+        <br>
+         <label>Enter password</label>
+        <br>
+        <input type="password" name="password" required>
+        <br>
+        <input type="submit" value="Create user">
+    </form>
+</div>
+
 <h3>Launch New Instance</h3>
 <form action="{{ url_for('aws_create_ec2') }}" method="POST">
     <label>Instance name</label>
