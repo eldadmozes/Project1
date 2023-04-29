@@ -173,8 +173,8 @@ def aws_create_ec2():
             user_data += '''
                             #!/bin/bash
                             cd /home/ubuntu
-                            wget https://raw.githubusercontent.com/eldadmozes/project1/main/dev-tools/Dockerfile 
-                            docker build -t jenkins .
+                            git clone https://github.com/eldadmozes/Project1.git
+                            docker build -t jenkins /dev-tools .
                             sleep 60  # Delay for 60 seconds
                             docker run -d -p 8080:8080 -p 50000:50000 --name jenkins -v jenkins_home:/var/jenkins_home jenkins:latest
                             '''
