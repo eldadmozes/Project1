@@ -16,3 +16,5 @@ pipeline {
                 sh "python3 slim-app.py"
             }
          }
+     }    
+}
