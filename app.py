@@ -171,12 +171,19 @@ def aws_create_ec2():
         time.sleep(120)
             
         if install_jenkins:
+            user_data_script = '''
+                            #!/bin/bash
+                            wget https://raw.githubusercontent.com/eldadmozes/project1/main/dev-tools/Dockerfile 
+                            docker build -t jenkins .
+                            sleep 60  # Delay for 60 seconds
+                            docker run -d -p 8080:8080 -p 50000:50000 --name jenkins -v jenkins_home:/var/jenkins_home jenkins:latest
+                            '''
             # user_data += 'sudo docker pull jenkins/jenkins:lts && sudo docker run -d -p 8080:8080 -p 50000:50000 --name jenkins -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts'
-            user_data += 'wget https://raw.githubusercontent.com/eldadmozes/project1/main/dev-tools/Dockerfile'
-            time.sleep(3)
-            user_data +='docker build -t jenkins .'
-            time.sleep(20)
-            user_data += 'docker run -d -p 8080:8080 -p 50000:50000 --name jenkins -v jenkins_home:/var/jenkins_home jenkins:latest'
+            # user_data += 'wget https://raw.githubusercontent.com/eldadmozes/project1/main/dev-tools/Dockerfile'
+            # time.sleep(3)
+            # user_data +='docker build -t jenkins .'
+            # time.sleep(20)
+            # user_data += 'docker run -d -p 8080:8080 -p 50000:50000 --name jenkins -v jenkins_home:/var/jenkins_home jenkins:latest'
         #     user_data += 'sudo apt install python3-flask'
         # security_group = request.form.get('security_group_id')
         instance = ec2.run_instances(
