@@ -167,7 +167,8 @@ def aws_create_ec2():
         if install_docker:
             print(install_docker)
             user_data += "sudo apt-get update && sudo apt -y install docker.io\n"
-
+        
+        time.sleep(120)
             
         if install_jenkins:
             # user_data += 'sudo docker pull jenkins/jenkins:lts && sudo docker run -d -p 8080:8080 -p 50000:50000 --name jenkins -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts'
