@@ -7,6 +7,12 @@ pipeline {
       
         stage('get app') {
             steps {
-                sh "wget https://raw.githubusercontent.com"
+                sh "wget https://raw.githubusercontent.com/eldadmozes/Project1/main/dev-tools/slim-app.py"
             }
         }
+
+        stage('run app'){
+            steps{
+                sh "python3 slim-app.py"
+            }
+         }
