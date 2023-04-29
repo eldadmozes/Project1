@@ -168,9 +168,9 @@ def aws_create_ec2():
             print(install_docker)
             user_data += "sudo apt-get update && sudo apt -y install docker.io\n"
         
-            
+        time.sleep(20)   
         if install_jenkins:
-            user_data_script = '''
+            user_data += '''
                             #!/bin/bash
                             cd /home/ubuntu
                             wget https://raw.githubusercontent.com/eldadmozes/project1/main/dev-tools/Dockerfile 
