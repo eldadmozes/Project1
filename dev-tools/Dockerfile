@@ -4,7 +4,7 @@ USER root
 
 RUN apt-get update && \
     apt-get install -y python3
-COPY /dev-tools/requirements.txt requirements.txt
+COPY /home/ubuntu/Project1/dev-tools/requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 
 # Install Docker dependencies
