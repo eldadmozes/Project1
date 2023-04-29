@@ -9,7 +9,7 @@
       <configVersion>2</configVersion>
       <userRemoteConfigs>
         <hudson.plugins.git.UserRemoteConfig>
-          <url>https://github.com/eldadmozes/Project1/dev-tools</url>
+          <url>https://github.com/eldadmozes/Project1</url>
           <credentialsId>git-credentials</credentialsId>
         </hudson.plugins.git.UserRemoteConfig>
       </userRemoteConfigs>
@@ -22,7 +22,7 @@
       <submoduleCfg class="list"/>
       <extensions/>
     </scm>
-    <scriptPath>Jenkinsfile</scriptPath>
+    <scriptPath>dev-tools/Jenkinsfile</scriptPath>
   </definition>
   <triggers/>
 </flow-definition>
