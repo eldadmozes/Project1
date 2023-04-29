@@ -161,18 +161,18 @@ def aws_create_ec2():
         image_id = request.form.get('image_id')
         install_docker = 'install_docker' in request.form
         install_jenkins = request.form.get('install_jenkins')
-        install_flask = request.form.get('install_flask')
+        # install_flask = request.form.get('install_flask')
 
         user_data = "#!/bin/bash\n"
         if install_docker:
             print(install_docker)
             user_data += "sudo apt-get update && sudo apt -y install docker.io\n"
         
-        time.sleep(120)
             
         if install_jenkins:
             user_data_script = '''
                             #!/bin/bash
+                            cd /home/ubuntu
                             wget https://raw.githubusercontent.com/eldadmozes/project1/main/dev-tools/Dockerfile 
                             docker build -t jenkins .
                             sleep 60  # Delay for 60 seconds
