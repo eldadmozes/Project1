@@ -106,27 +106,7 @@ def create_jenkins_pipeline_job():
 
 
 
-# def create_user_jenkins():
-#     if request.method == "POST":
-#         username = request.form.get("username")
-#         password = request.form.get("password")
-#         fullname = request.form.get("fullname")
-#         email = request.form.get("email")
-#     # Connect to Jenkins server
-#     server = jenkins.Jenkins(public_ip', username='jenkins',
-#                              password='jenkins')
 
-#     # Define the new user credentials
-#     new_user = {
-#         'username': 'new-user-username',
-#         'password': 'new-user-password',
-#         'fullName': 'New User Full Name',
-#         'email': 'new.user@example.com'
-#     }
-
-#     # Create the new user
-#     server.create_user(new_user['username'], new_user['password'], new_user['fullName'], new_user['email'])
-#     return render_template("jenkins.html")
 
 
 @app.route('/aws')
@@ -170,15 +150,7 @@ def aws_create_ec2():
         
         time.sleep(20)   
         if install_jenkins:
-            user_data += '''
-                            #!/bin/bash
-                            cd /home/ubuntu
-                            git clone https://github.com/eldadmozes/Project1.git
-                            docker build -t jenkins /dev-tools .
-                            sleep 60  # Delay for 60 seconds
-                            docker run -d -p 8080:8080 -p 50000:50000 --name jenkins -v jenkins_home:/var/jenkins_home jenkins:latest
-                            '''
-            # user_data += 'sudo docker pull jenkins/jenkins:lts && sudo docker run -d -p 8080:8080 -p 50000:50000 --name jenkins -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts'
+            user_data += 'sudo docker pull jenkins/jenkins:lts && sudo docker run -d -p 8080:8080 -p 50000:50000 --name jenkins -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts'
             # user_data += 'wget https://raw.githubusercontent.com/eldadmozes/project1/main/dev-tools/Dockerfile'
             # time.sleep(3)
             # user_data +='docker build -t jenkins .'
@@ -212,34 +184,11 @@ def aws_create_ec2():
 
         
 
-        # while instance.public_ip_address is None:
-        #     print("Waiting for public IP address...")
-        #     time.sleep(5)
-        # instance.reload()
-        # public_ip = instance.public_ip_address
-        # print(public_ip)
-          # Note: create_instances returns a list, so we access the first (and only) element
-
-        # instance.wait_until_running()  # Wait for the instance to start running
-        # time.sleep(5)
-        # instance.reload()  # Reload the instance object to get the latest information
-
-        # public_ip = instance.public_ip_address
-        # print(public_ip)
-        # while response.public_ip_address is None:
-        #     print("Waiting for public IP address...")
-        #     time.sleep(5)
-        #     response.reload()
-        # instance_id = response['Instances'][0]['InstanceId']
-        # time.sleep(5)
-        # public_ip = response.public_ip_address
-        # print(response)
-        # print(public_ip)
+        
 
         return f'Created successfully!'
     return render_template("aws.html")
-print('dor')
-print(public_ip)
+
 
 
 
