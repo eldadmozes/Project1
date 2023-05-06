@@ -1,12 +1,12 @@
 alembic==1.10.3
-apturl==0.5.1
+apturl==0.5.2
 async-generator==1.10
 attrs==23.1.0
 bcrypt==3.2.0
 blinker==1.4
 boto3==1.26.115
 botocore==1.29.115
-Brlapi==0.8.2
+Brlapi==0.8.3
 certifi==2022.12.7
 chardet==4.0.0
 charset-normalizer==3.1.0
