@@ -36,12 +36,12 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh "docker build -t hello-web:1 ./Project1"
+                sh "sudo docker build -t hello-web:1 ./Project1"
             }
         }
         stage('Run image') {
             steps {
-                sh "docker run -d -p 5000:5000 hello-web:1"
+                sh "sudo docker run -d -p 5000:5000 hello-web:1"
             }    
         }
 	    stage("build user") {
