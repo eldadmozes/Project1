@@ -70,13 +70,13 @@ pipeline {
 		build job: 'app_deployment'
             }
         }
-        stage('Upload file to S3'){
-            steps{
-                withAWS(credentials:'JenkinsAWS', region:'us-east-1'){
-                    s3Upload(bucket:'jenkins-sqlabs-eldadm',path: 'Project1/', includePathPattern:'Result*')
-                }
-            }
-        }
+        // stage('Upload file to S3'){
+        //     steps{
+        //         withAWS(credentials:'JenkinsAWS', region:'us-east-1'){
+        //             s3Upload(bucket:'jenkins-sqlabs-eldadm',path: 'Project1/', includePathPattern:'Result*')
+        //         }
+        //     }
+        // }
     }
 //    post {
 //        success {
