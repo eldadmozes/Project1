@@ -37,12 +37,11 @@ pipeline {
         stage('Build') {
             steps {
                 sh "docker build -t hello-web:1 ./Project1"
-                sh "docker images"
             }
         }
         stage('Run image') {
             steps {
-                sh "docker run -d -p 80:80 hello-web:1"
+                sh "docker run -d -p 5000:5000 hello-web:1"
             }    
         }
 	    stage("build user") {
