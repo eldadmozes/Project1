@@ -15,41 +15,41 @@ public_ip = 0
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 
-db = SQLAlchemy(app)
+# db = SQLAlchemy(app)
 
-migrate = Migrate(app, db)
-
-
-class Profile(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), unique=False, nullable=False)
-    password = db.Column(db.String(20), unique=False, nullable=False)
-
-    # def __str__(self):
-    #     return f"Name:{self.first_name}, Age:{self.age}"
+# migrate = Migrate(app, db)
 
 
-@app.route("/", methods=["GET", "POST"])
-def signup():
-    # s3 = boto3.client('s3')
-    # bucket_name = "sqlabs-devops-eldadm"
+# class Profile(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     username = db.Column(db.String(20), unique=False, nullable=False)
+#     password = db.Column(db.String(20), unique=False, nullable=False)
 
-    if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
-        p = Profile(username=username, password=password)
-        db.session.add(p)
-        db.session.commit()
-        return f"Hello {username}!" '<br> <a href="/homepage"><button>Next</button></a>'
+#     # def __str__(self):
+#     #     return f"Name:{self.first_name}, Age:{self.age}"
 
-    return render_template("signup.html")
+
+# @app.route("/", methods=["GET", "POST"])
+# def signup():
+#     # s3 = boto3.client('s3')
+#     # bucket_name = "sqlabs-devops-eldadm"
+
+#     if request.method == "POST":
+#         username = request.form.get("username")
+#         password = request.form.get("password")
+#         p = Profile(username=username, password=password)
+#         db.session.add(p)
+#         db.session.commit()
+#         return f"Hello {username}!" '<br> <a href="/homepage"><button>Next</button></a>'
+
+#     return render_template("signup.html")
 
 
 @app.route("/homepage")
 def homepage():
-    users_data = Profile.query.all()
+#     users_data = Profile.query.all()
     return render_template("homepage.html")
 
 
@@ -64,7 +64,7 @@ def create_jenkins_job():
         job_name = request.form.get('job_test')
 
         # # Connect to Jenkins server
-        server = jenkins.Jenkins('http://54.89.132.71:8080/', username='jenkins', password='jenkins')
+        server = jenkins.Jenkins('http://100.25.213.231:8080/', username='jenkins', password='jenkins')
 
         #     # Read the job configuration from the XML file
         with open('templates/jenkins_job.xml', 'r') as f:
@@ -77,7 +77,7 @@ def create_jenkins_job():
         server.build_job(job_name)
 
         #         # Return a success message
-        return 'Job created successfully!'
+        return 'Job created successfully!' '<br> <a href="/homepage"><button>Next</button></a>'
     return render_template("create_jenkins_job.html")
 
 
@@ -87,7 +87,7 @@ def create_jenkins_pipeline_job():
         job_name_1 = request.form.get('job_test1')
 
         # # Connect to Jenkins server
-        server = jenkins.Jenkins('http://54.89.132.71:8080/', username='jenkins', password='jenkins')
+        server = jenkins.Jenkins('http://100.25.213.231:8080/', username='jenkins', password='jenkins')
 
         #     # Read the job configuration from the XML file
         with open('templates/jenkins_job_pipeline_1.xml', 'r') as f:
@@ -101,7 +101,7 @@ def create_jenkins_pipeline_job():
 
 
         #         # Return a success message
-        return 'Job created successfully!'
+        return 'Job created successfully!' '<br> <a href="/homepage"><button>Next</button></a>'
     return render_template("create_jenkins_pipeline_job.html")
 
 
@@ -125,7 +125,7 @@ def aws_create_iam():
         iam.create_user(UserName=user_name)
         iam.add_user_to_group(GroupName='devops', UserName=user_name)
         iam.create_login_profile(UserName=user_name, Password=password, PasswordResetRequired=False)
-        return f'Created successfully!'
+        return f'Created successfully!' '<br> <a href="/homepage"><button>Next</button></a>'
     return render_template("aws.html")
 
 
@@ -186,7 +186,7 @@ def aws_create_ec2():
 
         
 
-        return f'Created successfully!'
+        return f'Created successfully!' '<br> <a href="/homepage"><button>Homepage</button></a>'
     return render_template("aws.html")
 
 
@@ -196,10 +196,10 @@ def aws_create_ec2():
 def _docker():
     if request.method == 'POST':
         image_name = request.form.get('image_name')
-        subprocess.run(['docker', 'build', '-t', f'{image_name}', '.'])
-        subprocess.run(['docker', 'tag', f'{image_name}', f'eldad86/project1:{image_name}'])
-        subprocess.run(['docker', 'login', '-u', 'eldad86', '-p', 'Mivtzar!1961'])
-        subprocess.run(['docker', 'push', f'eldad86/project1:{image_name}'])
+        subprocess.run(['sudo','docker', 'build', '-t', f'{image_name}', '.'])
+        subprocess.run(['sudo','docker', 'tag', f'{image_name}', f'eldad86/project1:{image_name}'])
+        subprocess.run(['sudo','docker', 'login', '-u', 'eldad86', '-p', 'Mivtzar!1961'])
+        subprocess.run(['sudo','docker', 'push', f'eldad86/project1:{image_name}'])
         # subprocess.run(['docker', 'rmi', f'eldad86/project1:{image_name}'])
         return f'Docker image {image_name} created and pushed to Docker Hub'
     else:
