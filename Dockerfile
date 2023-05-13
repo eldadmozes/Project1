@@ -6,7 +6,7 @@ RUN pip3 install -r requirements.txt
 
 
 WORKDIR /usr/app
-COPY slim-app/app.py ./
+COPY . .
 
 #port expose for web app
 EXPOSE 5000
