@@ -8,4 +8,7 @@ RUN pip3 install -r requirements.txt
 WORKDIR /usr/app
 COPY slim-app/app.py ./
 
+#port expose for web app
+EXPOSE 5000
+
 CMD ["python3.8", "app.py", "Eldad"]
