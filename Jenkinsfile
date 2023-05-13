@@ -64,7 +64,7 @@ pipeline {
 }
         stage('Stop app container') {
             steps {
-                sh 'sudo docker stop $(docker ps -q | head -n 1)'
+                sh 'sudo docker stop $(sudo docker ps -q | head -n 1)'
 
         // Running downstream job
 		// build job: 'app_deployment'
