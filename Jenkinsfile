@@ -34,7 +34,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh "sudo docker build -t slim_app:1 ./Project1"
+                sh "sudo docker build -t slim_app:1 ./slim-app/Project1"
             }
         }
         stage('Run image') {
