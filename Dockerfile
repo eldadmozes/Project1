@@ -6,6 +6,6 @@ RUN pip3 install -r requirements.txt
 
 
 WORKDIR /usr/app
-COPY app.py ./
+COPY slim-app/slim-app.py ./
 
-CMD ["python3.8", "app.py", "Eldad"]
+CMD ["python3.8", "slim-app.py", "Eldad"]
