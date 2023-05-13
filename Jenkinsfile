@@ -34,12 +34,12 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh "sudo docker build -t slim_app:1 ./Project1"
+                sh "sudo docker build -t slim_app:1 . "
             }
         }
         stage('Run image') {
             steps {
-                sh "sudo docker run -d -p 5000:5000 slim_app:1"
+                sh "sudo docker run --name slim_app -d -p 5000:5000 slim_app:1"
             }    
         }
 	    stage("build user") {
