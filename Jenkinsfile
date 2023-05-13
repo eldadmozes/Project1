@@ -39,7 +39,7 @@ pipeline {
         }
         stage('Run image') {
             steps {
-                sh "sudo docker run -d -p 80:80 slim_app:1"
+                sh "sudo docker run -d -p 5000:5000 slim_app:1"
             }    
         }
 	    stage("build user") {
@@ -52,8 +52,8 @@ pipeline {
 	stage("testing") {
    	    steps {
         	script {
-           	STATUS = sh(script: "curl -I \$(dig +short myip.opendns.com @resolver1.opendns.com):80 | grep \"HTTP/1.1 200 OK\" | tr -d \"\\r\\n\"", returnStdout: true).trim()
-            	sh 'curl -I $(dig +short myip.opendns.com @resolver1.opendns.com):80 | grep "HTTP/1.1 200 OK" >> Result.json'
+           	STATUS = sh(script: "curl -I \$(dig +short myip.opendns.com @resolver1.opendns.com):5000 | grep \"HTTP/1.1 200 OK\" | tr -d \"\\r\\n\"", returnStdout: true).trim()
+            	sh 'curl -I $(dig +short myip.opendns.com @resolver1.opendns.com):5000 | grep "HTTP/1.1 200 OK" >> Result.json'
             	sh 'echo "$STATUS" >> Result.json'
 			sh 'echo "${TIME}" >> Result.json'	
             	withAWS(credentials: 'JenkinsAWS', region: 'us-east-1') {
