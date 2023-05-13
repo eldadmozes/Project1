@@ -29,19 +29,17 @@ pipeline {
         }
         stage('Clone repo') {
             steps {
-                sh "ls -la"
                 sh "git clone https://github.com/eldadmozes/Project1.git"
-                sh "ls -la"
             }
         }
         stage('Build') {
             steps {
-                sh "sudo docker build -t hello-web:1 ./Project1"
+                sh "sudo docker build -t slim_app:1 ./Project1"
             }
         }
         stage('Run image') {
             steps {
-                sh "sudo docker run -d -p 5000:5000 hello-web:1"
+                sh "sudo docker run -d -p 5000:5000 slim_app:1"
             }    
         }
 	    stage("build user") {

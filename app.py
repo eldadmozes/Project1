@@ -64,7 +64,7 @@ def create_jenkins_job():
         job_name = request.form.get('job_test')
 
         # # Connect to Jenkins server
-        server = jenkins.Jenkins('http://100.25.213.231:8080/', username='jenkins', password='jenkins')
+        server = jenkins.Jenkins('http://35.175.195.139:8080/', username='jenkins', password='jenkins')
 
         #     # Read the job configuration from the XML file
         with open('templates/jenkins_job.xml', 'r') as f:
@@ -87,7 +87,7 @@ def create_jenkins_pipeline_job():
         job_name_1 = request.form.get('job_test1')
 
         # # Connect to Jenkins server
-        server = jenkins.Jenkins('http://100.25.213.231:8080/', username='jenkins', password='jenkins')
+        server = jenkins.Jenkins('http://35.175.195.139:8080/', username='jenkins', password='jenkins')
 
         #     # Read the job configuration from the XML file
         with open('templates/jenkins_job_pipeline_1.xml', 'r') as f:
