@@ -60,7 +60,7 @@ pipeline {
                 // 	withAWS(credentials: 'JenkinsAWS', region: 'us-east-1') {
                 //     sh "aws dynamodb put-item --table-name result --item '{\"user\": {\"S\": \"${BUILD_USER}\"}, \"date\": {\"S\": \"${TIME}\"}, \"state\": {\"S\": \"${STATUS}\"}}'"
                 // }
-            }
+            
         }
     }
         stage('Stop app container') {
