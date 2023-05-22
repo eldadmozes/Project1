@@ -85,4 +85,4 @@ pipeline {
 //            sh 'docker stop $(docker ps -q | head -n 1)'
 //        }
 //    }    
-// }
+}
