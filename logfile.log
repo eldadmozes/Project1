@@ -1,0 +1,6 @@
+2023-05-22 21:51:03,767 :ERROR : assert 'Hello eldad!' == 'Hello eldad'
+  - Hello eldad
+  + Hello eldad!
+  ?            + :
+2023-05-22 21:51:32,686 :INFO : Test Passed successfully :
+2023-05-22 21:54:08,684 :INFO : Test Passed successfully :

@@ -51,11 +51,12 @@ pipeline {
 }
 	stage("testing") {
    	    steps {
-        	script {
-           	STATUS = sh(script: "curl -I \$(dig +short myip.opendns.com @resolver1.opendns.com):5000 | grep \"HTTP/1.1 200 OK\" | tr -d \"\\r\\n\"", returnStdout: true).trim()
-            	sh 'curl -I $(dig +short myip.opendns.com @resolver1.opendns.com):5000 | grep "HTTP/1.1 200 OK" >> Result.json'
-            	sh 'echo "$STATUS" >> Result.json'
-			sh 'echo "${TIME}" >> Result.json'	
+            sh 'pytest slim_app_test.py::Test_class --html=report.html'
+        	// script {
+           	// STATUS = sh(script: "curl -I \$(dig +short myip.opendns.com @resolver1.opendns.com):5000 | grep \"HTTP/1.1 200 OK\" | tr -d \"\\r\\n\"", returnStdout: true).trim()
+            // 	sh 'curl -I $(dig +short myip.opendns.com @resolver1.opendns.com):5000 | grep "HTTP/1.1 200 OK" >> Result.json'
+            // 	sh 'echo "$STATUS" >> Result.json'
+			// sh 'echo "${TIME}" >> Result.json'	
             // 	withAWS(credentials: 'JenkinsAWS', region: 'us-east-1') {
             //     sh "aws dynamodb put-item --table-name result --item '{\"user\": {\"S\": \"${BUILD_USER}\"}, \"date\": {\"S\": \"${TIME}\"}, \"state\": {\"S\": \"${STATUS}\"}}'"
             // }
