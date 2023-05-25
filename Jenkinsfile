@@ -52,7 +52,7 @@ pipeline {
         stage("testing") {
             steps {
                 dir('/home/ubuntu/workspace/deploy-app/Project1') {
-                sh 'pytest slim_app_test.py::Testclass --html=report.html'
+                sh 'pytest slim_app_test.py::TestClass --html=report.html'
                 // script {
                 // STATUS = sh(script: "curl -I \$(dig +short myip.opendns.com @resolver1.opendns.com):5000 | grep \"HTTP/1.1 200 OK\" | tr -d \"\\r\\n\"", returnStdout: true).trim()
                 // 	sh 'curl -I $(dig +short myip.opendns.com @resolver1.opendns.com):5000 | grep "HTTP/1.1 200 OK" >> Result.json'
