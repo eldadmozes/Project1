@@ -59,7 +59,7 @@ class TestClass(BaseClass):
     def test_signup(self):
         chrome_driver_path = ChromeDriverManager().install()
         chrome_options = Options()
-        chrome_options.add_argument("--headless", "--no-sandbox")
+        chrome_options.add_argument("--headless" "--no-sandbox")
         chrome_options.add_experimental_option("detach", True)
         service_obj = Service(chrome_driver_path)
         driver = webdriver.Chrome(service=service_obj, options=chrome_options)
@@ -73,6 +73,7 @@ class TestClass(BaseClass):
         element = driver.find_element(By.XPATH, "//body")
         expected_text = f"Hello {name}!"
         actual_text = element.text
+        print(actual_text)
         assert expected_text == actual_text, f"Expected '{expected_text}', but found '{actual_text}'"
 
         try:
