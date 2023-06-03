@@ -9,7 +9,7 @@ import time
 
 app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/admin1/Documents/Project1/slim-app/instance/site.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///registered.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////instance/registered.db'
 
 
 db = SQLAlchemy(app)
