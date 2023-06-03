@@ -69,7 +69,7 @@ pipeline {
                 sh 'sudo docker rm $(sudo docker ps -q | head -n 1) -f'
 
         // Running downstream job
-		build job: 'push image to docker hub'
+		build job: 'push image to DockerHub'
 
             }
         }
