@@ -74,13 +74,16 @@ pipeline {
 
             }
         }
-        // stage('Upload file to S3'){
-        //     steps{
-        //         withAWS(credentials:'JenkinsAWS', region:'us-east-1'){
-        //             s3Upload(bucket:'jenkins-sqlabs-eldadm',path: 'Project1/', includePathPattern:'Result*')
-        //         }
-        //     }
-        // }
+        stage('Upload file to S3'){
+            steps{
+            dir ('/home/ubuntu/workspace/deploy-app/Project1'){
+                withAWS(credentials:'JenkinsAWS', region:'us-east-1'){
+                    sh 'aws s3 cp report.html s3://jenkins-sqlabs-eldadm'
+                    // s3Upload(bucket:'jenkins-sqlabs-eldadm',path: 'Project1/', includePathPattern:'Result*')
+                    }
+                }
+            }
+        }
     }
 //    post {
 //        success {
