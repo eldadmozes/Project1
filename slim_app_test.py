@@ -64,7 +64,7 @@ class TestClass(BaseClass):
         service_obj = Service(chrome_driver_path)
         driver = webdriver.Chrome(service=service_obj, options=chrome_options)
         driver.implicitly_wait(5)
-        driver.get("http://3.95.148.245:5000")
+        driver.get("http://184.72.104.0:5000")
         name = 'eldad'
         log = self.log_conf()
         driver.find_element(By.XPATH, "//input[@name='username']").send_keys(name)
