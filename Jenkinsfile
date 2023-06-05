@@ -70,7 +70,7 @@ pipeline {
                 sh 'sudo docker rm slim_app -f'
 
         // Running downstream job
-		build job: 'push image to dockerhub'
+		build job: 'push image to docker hub'
 
             }
         }
