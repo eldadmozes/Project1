@@ -53,7 +53,7 @@ pipeline {
             steps{
             dir ('/home/ubuntu/workspace/deploy-app/Project1'){
                 withAWS(credentials:'Jenkins slave to AWS', region:'us-east-1'){
-                    sh 'aws s3 cp report.html s3://sqlabs-devops-eldadm/Project1'
+                    sh 'aws s3 cp report.html s3://sqlabs-devops-eldadm/'
                     // s3Upload(bucket:'jenkins-sqlabs-eldadm',path: 'Project1/', includePathPattern:'Result*')
                     }
                 }
