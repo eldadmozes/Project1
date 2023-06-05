@@ -66,12 +66,7 @@ pipeline {
     }
         stage('Stop app container') {
             steps {
-                // sh 'sudo docker rm $(sudo docker ps -q | head -n 1) -f'
                 sh 'sudo docker rm slim_app -f'
-
-        // Running downstream job
-		// build job: 'push image to docker hub'
-
             }
         }
         stage('Upload file to S3'){
