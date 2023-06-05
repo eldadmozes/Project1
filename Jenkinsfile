@@ -10,18 +10,6 @@ pipeline {
 //            triggers {
 //                githubPush()
     stages {
-        // stage ('checkout scm'){
-        //     steps {
-        //         checkout([
-        //             $class: 'GitSCM',
-        //             branches: [[name: 'main']],
-        //             userRemoteConfigs : [[
-        //                 url: 'git@github.com:eldadmozes/Project1.git',
-        //                 credentialsId: ''
-        //                 ]]
-        //             ])
-        //     }
-        // }
         stage('Cleanup') { agent none
             steps {
                 sh "rm -rf Project1"
@@ -53,14 +41,6 @@ pipeline {
             steps {
                 dir('/home/ubuntu/workspace/deploy-app/Project1') {
                 sh 'pytest slim_app_test.py::TestClass --html=report.html'
-                // script {
-                // STATUS = sh(script: "curl -I \$(dig +short myip.opendns.com @resolver1.opendns.com):5000 | grep \"HTTP/1.1 200 OK\" | tr -d \"\\r\\n\"", returnStdout: true).trim()
-                // 	sh 'curl -I $(dig +short myip.opendns.com @resolver1.opendns.com):5000 | grep "HTTP/1.1 200 OK" >> Result.json'
-                // 	sh 'echo "$STATUS" >> Result.json'
-                // sh 'echo "${TIME}" >> Result.json'	::Test_class
-                // 	withAWS(credentials: 'JenkinsAWS', region: 'us-east-1') {
-                //     sh "aws dynamodb put-item --table-name result --item '{\"user\": {\"S\": \"${BUILD_USER}\"}, \"date\": {\"S\": \"${TIME}\"}, \"state\": {\"S\": \"${STATUS}\"}}'"
-                // }
             }
         }
     }
@@ -82,9 +62,4 @@ pipeline {
             }
         }
     }
-//    post {
-//        success {
-//            sh 'docker stop $(docker ps -q | head -n 1)'
-//        }
-//    }    
 }
