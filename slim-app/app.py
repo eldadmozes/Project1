@@ -34,9 +34,9 @@ def signup():
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
-        p = Profile(username=username, password=password)
-        db.session.add(p)
-        db.session.commit()
+        # p = Profile(username=username, password=password)
+        # db.session.add(p)
+        # db.session.commit()
         return f"Hello {username}!" 
 
     return render_template("signup.html")
