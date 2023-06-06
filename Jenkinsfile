@@ -58,7 +58,7 @@ pipeline {
                     }
                 }
         // Running downstream job
-		// build job: 'push image to docker hub'
+		build job: 'push image to docker hub'
             }
         }
     }
